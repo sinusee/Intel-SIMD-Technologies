@@ -4,7 +4,7 @@
 #include <time.h>
 #include <sched.h> 
 //#include "iacaMarks.h"
-#define singleCore assignToThisCore(2,3);//  -D _GNU_SOURCE should be added to command line
+#define singleCore assignToThisCore(2,3);//  -D _GNU_SOURCE should be added to command line the cores are reserved in grub configuration
 cpu_set_t  mask;
 
 
@@ -111,7 +111,7 @@ inline int _mm256_hadd2_epi32(__m256i a)
 	a = _mm256_hadd_epi32(a, a);
 	return _mm256_extract_epi32(a,0);
 }
-// my horizontal addition of ps
+// my horizontal addition of ps its a crap not completed
 inline float _mm256_hadd2_ps(__m256 p)
 {
 	__m256 p_hi;
