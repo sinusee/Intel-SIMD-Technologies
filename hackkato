@@ -1,0 +1,53 @@
+//#include <MAX.h>
+#include <stdlib.h>
+#include <string.h>
+#include <x86intrin.h>
+//#include <print.h>
+
+void
+vector_product(float *a, float *b,size_t dim,float *result);
+
+float *
+create_array(size_t number_of_items)
+{
+float *array = NULL;
+size_t i;
+
+array=(float *)aligned_alloc(32, number_of_items * sizeof(*array));
+if(array){
+    memset (array, 0x00, number_of_items * sizeof(*array));
+    for(i=0; i<number_of_items; i++){
+        array[i]=1.0+(float)i;
+    }
+}
+return array;
+}
+
+int
+	main(int argc, char **argv){
+
+	size_t dim = 4;
+	float *v;
+	float *q;
+	float *result;
+
+	v=create_array(dim);
+	q=create_array(dim);
+	result=create_array(dim);
+
+	__m128 vec_v, vec_q, vec_result;
+	vec_v = _mm_load_ps(v); // 
+	vec_q = _mm_load_ps(q);  // aligned instruction returns segmentation faults.
+	//printVecps(vec_v);
+	//printVecps(vec_q);
+
+	vec_result = _mm_mul_ps(vec_v, vec_q);
+	
+
+	//vector_product(v,q,dim,result);
+	//printVecps(vec_result);
+
+	_mm_store_ps(result, vec_result);
+
+	return 0;
+}
