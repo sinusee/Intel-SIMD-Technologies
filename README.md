@@ -12,3 +12,5 @@ Convolution 7x7 scalar: CON71.c
 Convolution 9x9 scalar: CON91.c
 
 An example of execution bash file.: icc.sh
+
+If you want more than uploaded codes feel free to send an email to me: hossein.amiri.papers@gmail.com
